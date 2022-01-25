@@ -63,7 +63,7 @@ class StorageFileApi {
   /// [path] The relative file path including the bucket ID. Should be of the format `bucket/folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.
   /// [data] The binary file data to be stored in the bucket.
   /// [fileOptions] HTTP headers. For example `cacheControl`
-  Future<StorageResponse<String>> uploadBinary(
+  Future<StorageResponse<dynamic>> uploadBinary(
     String path,
     Uint8List data, {
     FileOptions? fileOptions,
@@ -80,8 +80,8 @@ class StorageFileApi {
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
-        return StorageResponse<String>(
-          data: (response.data as Map)['Key'] as String,
+        return StorageResponse<dynamic>(
+          data: (response.data as Map)['Key'],
         );
       }
     } catch (e) {
@@ -94,7 +94,7 @@ class StorageFileApi {
   /// [path] The relative file path including the bucket ID. Should be of the format `bucket/folder/subfolder`. The bucket already exist before attempting to upload.
   /// [file] The file object to be stored in the bucket.
   /// [fileOptions] HTTP headers. For example `cacheControl`
-  Future<StorageResponse<String>> update(
+  Future<StorageResponse<dynamic>> update(
     String path,
     File file, {
     FileOptions? fileOptions,
@@ -111,7 +111,7 @@ class StorageFileApi {
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
-        return StorageResponse<String>(data: response.data['Key'] as String);
+        return StorageResponse<dynamic>(data: response.data['Key']);
       }
     } catch (e) {
       return StorageResponse(error: StorageError(e.toString()));
@@ -123,7 +123,7 @@ class StorageFileApi {
   /// [path] The relative file path including the bucket ID. Should be of the format `bucket/folder/subfolder`. The bucket already exist before attempting to upload.
   /// [data] The binary file data to be stored in the bucket.
   /// [fileOptions] HTTP headers. For example `cacheControl`
-  Future<StorageResponse<String>> updateBinary(
+  Future<StorageResponse<dynamic>> updateBinary(
     String path,
     Uint8List data, {
     FileOptions? fileOptions,
@@ -140,8 +140,8 @@ class StorageFileApi {
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
-        return StorageResponse<String>(
-          data: (response.data as Map)['Key'] as String,
+        return StorageResponse<dynamic>(
+          data: (response.data as Map)['Key'],
         );
       }
     } catch (e) {
@@ -153,7 +153,7 @@ class StorageFileApi {
   ///
   /// [fromPath] The original file path, including the current file name. For example `folder/image.png`.
   /// [toPath] The new file path, including the new file name. For example `folder/image-copy.png`.
-  Future<StorageResponse<String>> move(String fromPath, String toPath) async {
+  Future<StorageResponse<dynamic>> move(String fromPath, String toPath) async {
     try {
       final options = FetchOptions(headers: headers);
       final response = await fetch.post(
@@ -168,8 +168,8 @@ class StorageFileApi {
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
-        return StorageResponse<String>(
-          data: response.data['message'] as String,
+        return StorageResponse<dynamic>(
+          data: response.data['message'],
         );
       }
     } catch (e) {
