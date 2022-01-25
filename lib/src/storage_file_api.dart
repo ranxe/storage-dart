@@ -40,7 +40,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.postFile(
-        '$url/object/$_path',
+        '$url/api/v1/file$_path',
         file,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -71,7 +71,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.postBinaryFile(
-        '$url/object/$_path',
+        '$url/api/v1/file$_path',
         data,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -102,7 +102,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.putFile(
-        '$url/object/$_path',
+        '$url/api/v1/file$_path',
         file,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -131,7 +131,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.putBinaryFile(
-        '$url/object/$_path',
+        '$url/api/v1/file$_path',
         data,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -157,7 +157,7 @@ class StorageFileApi {
     try {
       final options = FetchOptions(headers: headers);
       final response = await fetch.post(
-        '$url/object/move',
+        '$url/api/v1/file/move',
         {
           'bucketId': bucketId,
           'sourceKey': fromPath,
@@ -189,7 +189,7 @@ class StorageFileApi {
       final _path = _getFinalPath(path);
       final options = FetchOptions(headers: headers);
       final response = await fetch.post(
-        '$url/object/sign/$_path',
+        '$url/api/v1/sign/$_path',
         {'expiresIn': expiresIn},
         options: options,
       );
@@ -211,7 +211,8 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final options = FetchOptions(headers: headers, noResolveJson: true);
-      final response = await fetch.get('$url/object/$_path', options: options);
+      final response =
+          await fetch.get('$url/api/v1/file$_path', options: options);
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
@@ -228,7 +229,7 @@ class StorageFileApi {
   StorageResponse<String> getPublicUrl(String path) {
     try {
       final _path = _getFinalPath(path);
-      final publicUrl = '$url/object/public/$_path';
+      final publicUrl = '$url/api/v1/public/$_path';
       return StorageResponse<String>(data: publicUrl);
     } catch (e) {
       return StorageResponse(error: StorageError(e.toString()));
@@ -242,7 +243,7 @@ class StorageFileApi {
     try {
       final options = FetchOptions(headers: headers);
       final response = await fetch.delete(
-        '$url/object/$bucketId',
+        '$url/api/v1/$bucketId',
         {'prefixes': paths},
         options: options,
       );
@@ -282,7 +283,7 @@ class StorageFileApi {
       };
       final options = FetchOptions(headers: headers);
       final response = await fetch.post(
-        '$url/object/list/$bucketId',
+        '$url/api/v1/list/$bucketId',
         body,
         options: options,
       );
