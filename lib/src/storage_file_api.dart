@@ -32,7 +32,7 @@ class StorageFileApi {
   /// [path] The relative file path including the bucket ID. Should be of the format `bucket/folder/subfolder/filename.png`. The bucket must already exist before attempting to upload.
   /// [file] The File object to be stored in the bucket.
   /// [fileOptions] HTTP headers. For example `cacheControl`
-  Future<StorageResponse<String>> upload(
+  Future<StorageResponse<dynamic>> upload(
     String path,
     File file, {
     FileOptions? fileOptions,
@@ -49,8 +49,8 @@ class StorageFileApi {
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
-        return StorageResponse<String>(
-          data: (response.data as Map)['Key'] as String,
+        return StorageResponse<dynamic>(
+          data: (response.data as Map)['Key'],
         );
       }
     } catch (e) {
