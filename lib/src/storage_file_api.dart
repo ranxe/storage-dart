@@ -24,7 +24,7 @@ class StorageFileApi {
   final String? bucketId;
 
   String _getFinalPath(String path) {
-    return '$bucketId/$path';
+    return '$bucketId?filePath=$path';
   }
 
   /// Uploads a file to an existing bucket.
