@@ -74,7 +74,7 @@ class Fetch {
           ? MediaType.parse(fileOptions.mime!)
           : _parseMediaType(file.path);
       final multipartFile = http.MultipartFile.fromBytes(
-        '',
+        'file',
         file.readAsBytesSync(),
         filename: file.path,
         contentType: contentType,
