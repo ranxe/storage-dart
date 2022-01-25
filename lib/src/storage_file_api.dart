@@ -40,7 +40,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.postFile(
-        '$url/api/v1/file$_path',
+        '$url/api/v1/file/$_path',
         file,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -71,7 +71,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.postBinaryFile(
-        '$url/api/v1/file$_path',
+        '$url/api/v1/file/$_path',
         data,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -102,7 +102,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.putFile(
-        '$url/api/v1/file$_path',
+        '$url/api/v1/file/$_path',
         file,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -131,7 +131,7 @@ class StorageFileApi {
     try {
       final _path = _getFinalPath(path);
       final response = await fetch.putBinaryFile(
-        '$url/api/v1/file$_path',
+        '$url/api/v1/file/$_path',
         data,
         fileOptions ?? defaultFileOptions,
         options: FetchOptions(headers: headers),
@@ -212,7 +212,7 @@ class StorageFileApi {
       final _path = _getFinalPath(path);
       final options = FetchOptions(headers: headers, noResolveJson: true);
       final response =
-          await fetch.get('$url/api/v1/file$_path', options: options);
+          await fetch.get('$url/api/v1/file/$_path', options: options);
       if (response.hasError) {
         return StorageResponse(error: response.error);
       } else {
