@@ -50,7 +50,7 @@ class StorageFileApi {
         return StorageResponse(error: response.error);
       } else {
         return StorageResponse<dynamic>(
-          data: (response.data as Map)['Key'],
+          data: (response.data as Map)['key'],
         );
       }
     } catch (e) {
